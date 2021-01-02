@@ -34,6 +34,14 @@ public:
     UFUNCTION()
     void MoveRight(float Value);
 
+	// Sets jump flag when key is pressed.
+	UFUNCTION()
+	void StartJump();
+
+	// Clears jump flag when key is released.
+	UFUNCTION()
+	void StopJump();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyCharacter")
 	class USpringArmComponent* CameraBoom;//Camera arm assembly
 

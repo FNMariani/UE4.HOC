@@ -45,6 +45,10 @@ void AEpicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Set up "look" bindings.
 	PlayerInputComponent->BindAxis("Turn", this, &AEpicCharacter::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &AEpicCharacter::AddControllerPitchInput);
+
+	// Set up "action" bindings.
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AEpicCharacter::StartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AEpicCharacter::StopJump);
 }
 
 void AEpicCharacter::MoveForward(float Value)
@@ -61,3 +65,12 @@ void AEpicCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
+void AEpicCharacter::StartJump()
+{
+	bPressedJump = true;
+}
+
+void AEpicCharacter::StopJump()
+{
+	bPressedJump = false;
+}
