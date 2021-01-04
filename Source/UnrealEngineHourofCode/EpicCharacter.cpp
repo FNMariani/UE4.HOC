@@ -23,7 +23,11 @@ AEpicCharacter::AEpicCharacter()
 void AEpicCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (GetOwner())
+	{
+		OnTakeAnyDamage.AddDynamic(this, &AEpicCharacter::TakeDamage);
+	}
 }
 
 // Called every frame
@@ -73,4 +77,16 @@ void AEpicCharacter::StartJump()
 void AEpicCharacter::StopJump()
 {
 	bPressedJump = false;
+}
+
+void AEpicCharacter::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Damage Received %f"), Damage)
+
+	PlayerHealth = FMath::Clamp(PlayerHealth - Damage, 0.0f, 1.0f);
+
+	if (PlayerHealth <= 0)
+	{
+		Destroy();
+	}
 }

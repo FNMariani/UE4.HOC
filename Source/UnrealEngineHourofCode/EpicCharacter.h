@@ -47,4 +47,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyCharacter")
 	class UCameraComponent* FollowCamera;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "playerVars")
+	float PlayerHealth = 1.f;
+
+	UFUNCTION()
+	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 };
