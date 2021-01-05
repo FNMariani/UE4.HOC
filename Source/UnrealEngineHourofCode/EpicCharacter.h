@@ -42,6 +42,19 @@ public:
 	UFUNCTION()
 	void StopJump();
 
+	//Sprint
+	UFUNCTION()
+	void StartSprint();
+
+	UFUNCTION()
+	void StopSprint();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Movement")
+	float sprintSpeed = 1200.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Movement")
+	float walkSpeed = 600.f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyCharacter")
 	class USpringArmComponent* CameraBoom;//Camera arm assembly
 
@@ -49,7 +62,7 @@ public:
 	class UCameraComponent* FollowCamera;
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "playerVars")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Vars")
 	float PlayerHealth = 1.f;
 
 	UFUNCTION()

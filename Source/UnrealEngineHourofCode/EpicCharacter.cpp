@@ -4,6 +4,7 @@
 #include "EpicCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AEpicCharacter::AEpicCharacter()
@@ -53,6 +54,9 @@ void AEpicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Set up "action" bindings.
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AEpicCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AEpicCharacter::StopJump);
+
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AEpicCharacter::StartSprint);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AEpicCharacter::StopSprint);
 }
 
 void AEpicCharacter::MoveForward(float Value)
@@ -77,6 +81,16 @@ void AEpicCharacter::StartJump()
 void AEpicCharacter::StopJump()
 {
 	bPressedJump = false;
+}
+
+void AEpicCharacter::StartSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
+}
+
+void AEpicCharacter::StopSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 }
 
 void AEpicCharacter::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
