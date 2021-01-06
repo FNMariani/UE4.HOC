@@ -51,6 +51,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USoundCue* CheckpointSound;
 
+	//Set Spawn Location on GameMode
+	UFUNCTION(BlueprintImplementableEvent, Category = "Output")
+	void SetLocationOnGamemode(FTransform SpawnLocation);
+
 private:
 	UAudioComponent* CheckpointAudioComponent;
 

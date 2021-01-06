@@ -8,6 +8,8 @@
 #include "Components/AudioComponent.h"
 #include "Sound/SoundCue.h"
 
+#include "GameMode_HOC.h"
+
 // Sets default values
 ACheckpoint_HOC::ACheckpoint_HOC()
 {
@@ -28,6 +30,7 @@ ACheckpoint_HOC::ACheckpoint_HOC()
 	SphereCollision->InitSphereRadius(32.f);
 
 	CheckpointTransform = CreateDefaultSubobject<USceneComponent>(TEXT("CheckpointTransform"));
+	CheckpointTransform->SetupAttachment(RootSceneComponent);
 
 	CheckpointText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("CheckpointText"));
 	CheckpointText->SetupAttachment(RootSceneComponent);
@@ -103,6 +106,8 @@ void ACheckpoint_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, 
 			{
 				CheckpointAudioComponent->Play(0.f);
 			}
+
+			SetLocationOnGamemode(CheckpointTransform->GetComponentTransform());
 		}
 	}
 }
