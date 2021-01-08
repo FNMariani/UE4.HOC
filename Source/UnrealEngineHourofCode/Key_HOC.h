@@ -4,42 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Coin_HOC.generated.h"
+#include "Key_HOC.generated.h"
 
 UCLASS()
-class UNREALENGINEHOUROFCODE_API ACoin_HOC : public AActor
+class UNREALENGINEHOUROFCODE_API AKey_HOC : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ACoin_HOC();
+	AKey_HOC();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Root")
 	class USceneComponent* RootSceneComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Coin")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Key")
 	UStaticMeshComponent* Mesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Coin")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Key")
 	class USphereComponent* SphereCollision;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Coin")
-	class UTextRenderComponent* CoinText;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Coin")
-	class URotatingMovementComponent* RotatingComponent;
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Output")
-	void PickUpCoin();
-
-private:
-	//Sound
-	UPROPERTY()
-	class USoundCue* CoinSound;
-
-	UPROPERTY()
-	UAudioComponent* CoinSoundAudioComponent;
+	void PickUpKey();
 
 protected:
 	// Called when the game starts or when spawned
@@ -48,7 +34,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
 	UFUNCTION()
 	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 

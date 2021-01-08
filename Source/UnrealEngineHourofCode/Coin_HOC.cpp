@@ -74,6 +74,9 @@ void ACoin_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class 
 		{
 			CoinSoundAudioComponent->Play(0.f);
 		}
+
+		PickUpCoin();
+
 		Destroy();
 	}
 }

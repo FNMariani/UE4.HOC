@@ -54,6 +54,12 @@ public:
 	/* Handle to manage the timer */
 	FTimerHandle TimerHandle;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Output")
+	void JumpBoostOn();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Output")
+	void JumpBoostOff();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

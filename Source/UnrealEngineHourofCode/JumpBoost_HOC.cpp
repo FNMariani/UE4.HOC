@@ -87,6 +87,8 @@ void AJumpBoost_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, c
 				JumpPowerUpSoundAudioComponent->Play(0.f);
 			}
 
+			JumpBoostOn();
+
 			//Delay
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AJumpBoost_HOC::ResetPowerUp, CoolDownTime, false);
 
@@ -101,6 +103,8 @@ void AJumpBoost_HOC::ResetPowerUp()
 	Mesh->ToggleVisibility(true);
 	SphereCollision->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	EpicCharacter->GetCharacterMovement()->JumpZVelocity = DefaultJumpVelocity;
+
+	JumpBoostOff();
 
 	// Ensure the timer is cleared by using the timer handle
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
