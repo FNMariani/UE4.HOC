@@ -9,22 +9,7 @@ APlatform_HOC::APlatform_HOC()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-
 	PlatformMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	RootComponent = PlatformMesh;
-}
-
-// Called when the game starts or when spawned
-void APlatform_HOC::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void APlatform_HOC::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 

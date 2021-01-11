@@ -23,20 +23,6 @@ AKey_HOC::AKey_HOC()
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &AKey_HOC::OnOverlapBegin);
 }
 
-// Called when the game starts or when spawned
-void AKey_HOC::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void AKey_HOC::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void AKey_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this))

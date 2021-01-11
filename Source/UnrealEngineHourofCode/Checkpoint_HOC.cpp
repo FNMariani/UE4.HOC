@@ -7,7 +7,6 @@
 #include "Components/ArrowComponent.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundCue.h"
-
 #include "GameMode_HOC.h"
 
 // Sets default values
@@ -48,14 +47,7 @@ ACheckpoint_HOC::ACheckpoint_HOC()
 		Material = Mat.Object;
 	}
 
-	if (Material)
-	{
-		MaterialInstanceRef = UMaterialInstanceDynamic::Create(Material, this, TEXT("DynamicMaterial"));
-	}
-
-
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &ACheckpoint_HOC::OnOverlapBegin);
-
 
 	static ConstructorHelpers::FObjectFinder<USoundCue> CheckpointSoundObject(TEXT("SoundCue'/Game/Hour_of_Code/Audio/SFX_checkpoint.SFX_checkpoint'"));
 	if (CheckpointSoundObject.Succeeded())
@@ -74,6 +66,10 @@ void ACheckpoint_HOC::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (Material)
+	{
+		MaterialInstanceRef = UMaterialInstanceDynamic::Create(Material, this, TEXT("DynamicMaterial"));
+	}
 	Button->SetMaterial(0, MaterialInstanceRef);
 
 	if (CheckpointAudioComponent && CheckpointSound)
@@ -82,24 +78,16 @@ void ACheckpoint_HOC::BeginPlay()
 	}
 }
 
-// Called every frame
-void ACheckpoint_HOC::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ACheckpoint_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this))
 	{
 		if (!CheckpointEnabled)
 		{
-
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap"));
 			CheckpointEnabled = true;
 
-			//Button->SetMaterial(0, MaterialInstanceRef);
+			Button->SetMaterial(0, MaterialInstanceRef);
 			MaterialInstanceRef->SetVectorParameterValue(TEXT("Color"), FLinearColor::Blue);
 
 			if (CheckpointAudioComponent && CheckpointSound)

@@ -26,7 +26,7 @@ ACoin_HOC::ACoin_HOC()
 
 	CoinText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("CoinText"));
 	CoinText->SetupAttachment(RootSceneComponent);
-	CoinText->SetText(TEXT("Coin Pickup"));
+	CoinText->SetText(TEXT("CoinPickup"));
 	CoinText->SetHorizontalAlignment(EHTA_Center);
 
 	RotatingComponent = CreateDefaultSubobject<URotatingMovementComponent>("RotatingComponent");
@@ -43,7 +43,6 @@ ACoin_HOC::ACoin_HOC()
 		CoinSoundAudioComponent->bStopWhenOwnerDestroyed = false;
 	}
 
-
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &ACoin_HOC::OnOverlapBegin);
 }
 
@@ -56,13 +55,6 @@ void ACoin_HOC::BeginPlay()
 	{
 		CoinSoundAudioComponent->SetSound(CoinSound);
 	}
-}
-
-// Called every frame
-void ACoin_HOC::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ACoin_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

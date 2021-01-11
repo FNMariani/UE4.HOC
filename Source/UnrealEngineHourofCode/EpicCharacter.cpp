@@ -10,9 +10,8 @@
 AEpicCharacter::AEpicCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
-	//RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 
@@ -29,13 +28,6 @@ void AEpicCharacter::BeginPlay()
 	{
 		OnTakeAnyDamage.AddDynamic(this, &AEpicCharacter::TakeDamage);
 	}
-}
-
-// Called every frame
-void AEpicCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -55,6 +47,7 @@ void AEpicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AEpicCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AEpicCharacter::StopJump);
 
+	// Set up "sprint" bindings.
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AEpicCharacter::StartSprint);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AEpicCharacter::StopSprint);
 }
@@ -95,8 +88,6 @@ void AEpicCharacter::StopSprint()
 
 void AEpicCharacter::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Damage Received %f"), Damage)
-
 	PlayerHealth = FMath::Clamp(PlayerHealth - Damage, 0.0f, 1.0f);
 
 	if (PlayerHealth <= 0)

@@ -20,9 +20,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -49,6 +46,7 @@ public:
 	UFUNCTION()
 	void StopSprint();
 
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Movement")
 	float sprintSpeed = 1200.f;
 
@@ -56,11 +54,10 @@ public:
 	float walkSpeed = 600.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyCharacter")
-	class USpringArmComponent* CameraBoom;//Camera arm assembly
+	class USpringArmComponent* CameraBoom; //Camera arm assembly
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyCharacter")
 	class UCameraComponent* FollowCamera;
-
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Vars")
 	float PlayerHealth = 1.f;

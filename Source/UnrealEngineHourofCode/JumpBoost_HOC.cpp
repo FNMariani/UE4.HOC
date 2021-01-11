@@ -45,7 +45,6 @@ AJumpBoost_HOC::AJumpBoost_HOC()
 		JumpPowerUpSoundAudioComponent->bAutoActivate = false;
 	}
 
-
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &AJumpBoost_HOC::OnOverlapBegin);
 }
 
@@ -58,13 +57,6 @@ void AJumpBoost_HOC::BeginPlay()
 	{
 		JumpPowerUpSoundAudioComponent->SetSound(JumpPowerUpSound);
 	}
-}
-
-// Called every frame
-void AJumpBoost_HOC::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void AJumpBoost_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -91,7 +83,6 @@ void AJumpBoost_HOC::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, c
 
 			//Delay
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AJumpBoost_HOC::ResetPowerUp, CoolDownTime, false);
-
 		}
 	}
 }
