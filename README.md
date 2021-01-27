@@ -1,5 +1,14 @@
-# Unreal Hour Of Code
- 
-I did the Hour Of Code lessons with C++.
+## Hour of Code
 
-[link to executable](https://drive.google.com/file/d/1Wz-nC8UVATOlzF4tbx3Q84HaiL_285N6/view?usp=sharing) (450mb~)
+### Description
+This game was developed for study purpose, the Hour Of Code problems were solved, but instead of using blueprints, the elements were made using C++.
+
+### Features
+* Use your ability to reach the goal.
+* Collect boosters.
+
+### Controls
+
+* WASD - Movement
+* Space - Jump
+* Escape - Exit game
